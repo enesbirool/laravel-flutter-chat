@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ChatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,3 +28,8 @@ Route::prefix('auth')
             ->name('logout');
 
     });
+Route::middleware('auth:sanctum')->group(function (){
+
+    Route::apiResource('chat', ChatController::class)->only(['index','store','show']);
+
+});
